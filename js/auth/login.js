@@ -58,3 +58,27 @@ form_login.onsubmit = async (e) => {
   document.querySelector("#form_login button").disabled = false;
   document.querySelector("#form_login button").innerHTML = `Login`;
 };
+const apiUrl = 'https://cors-anywhere.herokuapp.com/https://a57d-216-247-39-181.ngrok-free.app/api/login';
+
+fetch(apiUrl, {
+  method: 'POST', // or any other HTTP method you need
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  // Add your request body if needed
+  // body: JSON.stringify({ key: 'value' }),
+})
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Handle the response data
+    console.log(data);
+  })
+  .catch(error => {
+    // Handle errors
+    console.error('Fetch error:', error);
+  });
