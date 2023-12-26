@@ -101,7 +101,7 @@ btn_logout.onclick = async () => {
   
     try {
       // Get Genres API Endpoint; Caters search
-      const response = await fetch(backendURL + "/api/genre" + queryParams, {
+      const response = await fetch(backendURL + "/api/genres" + queryParams, {
         headers: {
           Accept: "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
@@ -174,7 +174,7 @@ btn_logout.onclick = async () => {
     // Add page controls
     for (let i = 1; i <= data.last_page; i++) {
       addPaginationLink(
-        backendURL + "/api/genre?page=" + i + (keyword ? "&keyword=" + keyword : ""),
+        backendURL + "/api/genres?page=" + i + (keyword ? "&keyword=" + keyword : ""),
         i.toString(),
         i === data.current_page
       );
@@ -183,7 +183,7 @@ btn_logout.onclick = async () => {
     // Add Next page control
     if (data.next_page_url) {
       addPaginationLink(
-        backendURL + "/api/genre?page=" + (data.current_page + 1) + (keyword ? "&keyword=" + keyword : ""),
+        backendURL + "/api/genres?page=" + (data.current_page + 1) + (keyword ? "&keyword=" + keyword : ""),
         "Next"
       );
     }
@@ -218,7 +218,7 @@ btn_logout.onclick = async () => {
       return;
     }
   
-    const response = await fetch(backendURL + "/api/genre/" + id, {
+    const response = await fetch(backendURL + "/api/genres/" + id, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
@@ -264,7 +264,7 @@ btn_logout.onclick = async () => {
     document.querySelector(`.card[data-id="${id}"]`).style.backgroundColor =
       "yellow";
   
-    const response = await fetch(backendURL + "/api/genre/" + id, {
+    const response = await fetch(backendURL + "/api/genres/" + id, {
       headers: {
         Accept: "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -317,7 +317,7 @@ btn_logout.onclick = async () => {
     // Check if forUpdateId is empty, if empty, then it's create, else it's update
     if (forUpdateId === "") {
       // Fetch API Genres Store Endpoint
-      response = await fetch(backendURL + "/api/genre", {
+      response = await fetch(backendURL + "/api/genres", {
         method: "POST",
         headers: headers,
         body: JSON.stringify(requestBody),
@@ -326,7 +326,7 @@ btn_logout.onclick = async () => {
     // for Update
     else {
       // Fetch API Genres Update Endpoint
-      response = await fetch(backendURL + "/api/genre/" + forUpdateId, {
+      response = await fetch(backendURL + "/api/genres/" + forUpdateId, {
         method: "PUT",
         headers: headers,
         body: JSON.stringify(requestBody),

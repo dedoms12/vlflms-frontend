@@ -120,7 +120,7 @@ btn_logout.onclick = async () => {
   // Show Book Data for Editing
   const showBookData = async (id) => {
     // Fetch book data using the book ID
-    const response = await fetch(backendURL + `/api/book/${id}`, {
+    const response = await fetch(backendURL + `/api/books/${id}`, {
       headers: {
         Accept: "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -176,7 +176,7 @@ btn_logout.onclick = async () => {
     
   
     // Get Books API Endpoint with pagination and search parameters
-    const response = await fetch(backendURL + "/api/book" + (queryString ? `?${queryString}` : ""), {
+    const response = await fetch(backendURL + "/api/books" + (queryString ? `?${queryString}` : ""), {
       headers: {
         Accept: "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -188,14 +188,14 @@ btn_logout.onclick = async () => {
       const responseData = await response.json();
   
       // Fetch authors and genres data
-      const authorsResponse = await fetch(backendURL + "/api/author", {
+      const authorsResponse = await fetch(backendURL + "/api/authors", {
         headers: {
           Accept: "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       });
       
-      const genresResponse = await fetch(backendURL + "/api/genre", {
+      const genresResponse = await fetch(backendURL + "/api/genres", {
         headers: {
           Accept: "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
@@ -382,7 +382,7 @@ btn_logout.onclick = async () => {
   
   // Populate authors dropdown
   async function getAuthorsDropdown() {
-    const response = await fetch(backendURL + "/api/author", {
+    const response = await fetch(backendURL + "/api/authors", {
         headers: {
             Accept: "application/json",
             Authorization: "Bearer " + localStorage.getItem("token"),
@@ -410,7 +410,7 @@ btn_logout.onclick = async () => {
   
   // Populate genres dropdown
   async function getGenresDropdown() {
-    const response = await fetch(backendURL + "/api/genre", {
+    const response = await fetch(backendURL + "/api/genres", {
       headers: {
         Accept: "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -462,7 +462,7 @@ btn_logout.onclick = async () => {
   
   // Function to send a book request (POST or PUT) based on the update status
   async function sendBookRequest(formData) {
-    const url = for_update_id === "" ? "/api/book" : `/api/book/${for_update_id}`;
+    const url = for_update_id === "" ? "/api/books" : `/api/books/${for_update_id}`;
     const method = for_update_id === "" ? "POST" : "PUT";
   
     try {
@@ -511,7 +511,7 @@ btn_logout.onclick = async () => {
   
   
   async function deleteBookRequest(bookId) {
-    const response = await fetch(backendURL + `/api/book/${bookId}`, {
+    const response = await fetch(backendURL + `/api/books/${bookId}`, {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',

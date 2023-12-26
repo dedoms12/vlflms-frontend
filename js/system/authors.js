@@ -95,7 +95,7 @@ form_author.onsubmit = async (e) => {
     // Check if for_update_id is empty, if empty, then it's create, else it's update
     if (forUpdateId === "") {
         // Fetch API Authors Store Endpoint
-        response = await fetch(backendURL + "/api/author", {
+        response = await fetch(backendURL + "/api/authors", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -108,7 +108,7 @@ form_author.onsubmit = async (e) => {
     // for Update
     else {
         // Fetch API Authors Update Endpoint
-        response = await fetch(backendURL + "/api/author/" + forUpdateId, {
+        response = await fetch(backendURL + "/api/authors/" + forUpdateId, {
             method: "PUT",
             headers: {
                 Accept: "application/json",
@@ -215,7 +215,7 @@ async function getAuthors(url = "", keyword = "") {
 
     try {
         // Get Authors API Endpoint; Caters search and pagination
-        const response = await fetch(backendURL + "/api/author" + queryParams, {
+        const response = await fetch(backendURL + "/api/authors" + queryParams, {
             headers: {
                 Accept: "application/json",
                 Authorization: "Bearer " + localStorage.getItem("token"),
@@ -315,7 +315,7 @@ const deleteAction = async (e) => {
         return;
     }
 
-    const response = await fetch(backendURL + "/api/author/" + id, {
+    const response = await fetch(backendURL + "/api/authors/" + id, {
         method: "DELETE",
         headers: {
             Accept: "application/json",
@@ -363,7 +363,7 @@ form_search.onsubmit = async (e) => {
 const showAuthorData = async (id) => {
     document.querySelector(`.card[data-id="${id}"]`).style.backgroundColor = "yellow";
 
-    const response = await fetch(backendURL + "/api/author/" + id, {
+    const response = await fetch(backendURL + "/api/authors/" + id, {
         headers: {
             Accept: "application/json",
             Authorization: "Bearer " + localStorage.getItem("token"),
