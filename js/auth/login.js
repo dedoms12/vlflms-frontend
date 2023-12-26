@@ -25,6 +25,7 @@ form_login.onsubmit = async (e) => {
   const response = await fetch(backendURL + "/api/login", {
     method: "POST",
     headers: {
+      "ngrok-skip-browser-warning": "69420",
       Accept: "application/json",
     },
     body: formData,
